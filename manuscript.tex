@@ -5,6 +5,8 @@
 \usepackage{listingsutf8}
 \usepackage[hidelinks]{hyperref}
 \usepackage{cleveref}
+\usepackage{footmisc}
+\usepackage{bookmark}
 
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 
@@ -15,7 +17,7 @@
 
 \author{
     Nicholas J. Car\inst{1}\orcidID{0000-0002-8742-7730} \and \\
-    Irina Bastrakova\inst{2}
+    Irina Bastrakova\inst{2}\orcidID{0000-0002-4643-7289}
 }
 
 \authorrunning{Car N.J. et al.}
@@ -39,17 +41,14 @@
 \begin{abstract}
 In 2018 – 2020, Australia built two \textit{Linked Data} ``spines'' - themed collections of interoperable reference data - called LocI and LongSpine. 
 LocI (Location Index) consists of 7 nationally-significant spatial datasets such as the Australian Statistical Geographies System. 
-LongSpine (Longitudinal Spine of Government Functions) consists of multiple datasets of Australian government structure, such as the 
-Australian Government Organisations Register, as well as vocabularies of government functions. Both projects interpreted existing open 
+LongSpine (Longitudinal Spine of Government Functions) consists of multiple datasets of Australian government structure. Both projects interpreted existing open 
 datasets into Linked Data form and provided online delivery of their the parts as well as infrastructure for their use as a single system.\\
 
-Here described is the Climate and Resilience Services Australia’s Data Identify, Collect and Connect project's next-generation 
-implementation of the ``spines'' patterns and architecture and partial direct reuse of LocI. We discuss: differences with the originals, in particular LocI; original 
-element reuse; and future-proofing steps, technical and non-technical. We also discuss the new expectations placed on this second-generation 
-system, in particular the requirement to work with non-Linked Data spatial data systems, and how this system 
-is pushing spatial and \textit{Semantic Web} standards development such as DGGS and GeoSPARQL.
+Here described is the Climate and Resilience Services Australia’s Data Identify, Collect and Connect project's reuse and extension of LocI. 
+We discuss LocI design, this project's differences and key requirement of this project, in particular the requirement to work with non-Linked Data 
+spatial data systems, and how this system is pushing spatial and \textit{Semantic Web} standards development such as DGGS and GeoSPARQL.
 
-\keywords{Location Index \and LocI \and LongSpine \and GeoSPARQL \and DGGS \and Spatial Data on the Web \and Australia \and data spine \and national data infrastructure}
+\keywords{Location Index \and LocI \and GeoSPARQL \and DGGS \and Spatial Data on the Web \and Australia \and national data infrastructure}
 \end{abstract}
 
 
@@ -78,7 +77,7 @@ are being used to integrate different, but relativley similar, datasets that are
 \textit{Discrete Global Grid System} (DGGS) spatial data methods are being used to integrate spatial data from multiple sources.
 
 This paper describes the SW/LD and DGGS approaches being implemented in CaRSA's ``Data Identify, Collect, and Connect'' project that we will 
-refere to as \textit{the project}. The project extends the approach taken by the Location Index project described in the next section.
+refere to as \textit{this project}. The project extends the approach taken by the Location Index project described in the next section.
 
 \section{LocI: The Loction Index}\label{sec:loci}
 
@@ -87,7 +86,7 @@ refere to as \textit{the project}. The project extends the approach taken by the
     \includegraphics[width=\linewidth]{images/loci-brochure.png}
     \caption{A project brochure image, from \cite{car_location_2019}, of LocI with respect to
     Australian government \textit{Environment}, \textit{Society} and \textit{Economy} data}
-    \label{fig:geosparql11ontology}
+    \label{fig:loci-brochure}
 \end{figure}
 
 In 2018 - 2020, Australian spatial data and research agencies implemented a:
@@ -99,13 +98,14 @@ In 2018 - 2020, Australian spatial data and research agencies implemented a:
 This system, known as the Location Index (LocI)~\cite{car_location_2019}, aims to ``better geospatially integrate and analyze data across 
 government portfolios and information domains''. The main use case addressed by LocI's is to greatly reduce the time taken by government 
 workers in data analysis using spatial information by providing pre-integrated, authoratitive, spatial datasets that can be used in 
-online, open data scenarios, within secure data integration environments and across the two.
+online, open data scenarios, within secure data integration environments and across the two. The project deals with data from multiple domains,
+see Figure~\ref{fig:loci-brochure}.
 
 Some of the interesting aspects of LocI's design include:
 
 \begin{itemize}
     \item[$\ast$] federated publication of datasets via standard Linked Data APIs
-    \item[$\ast$] use of VoID \texttt{Linkset}~\cite{alexander_describing_2011} instances to crosswalk datasets
+    \item[$\ast$] use of VoID \texttt{Linkset}~\footnote{\url{https://www.w3.org/TR/void/}} instances to crosswalk datasets
     \begin{itemize}
         \item[$-$] these are independently-selectable for use meaning that a specific ccrosswalk, of potentially many, may be selected for use
     \end{itemize} 
@@ -119,13 +119,13 @@ Some of the interesting aspects of LocI's design include:
     \end{itemize}
 \end{itemize} 
 
-LocI's initial spatial datasets are from a number of domains including environmental (the \textit{Australian Hydrological Geospatial Fabric}
-\footnote{The original, non-RDF dataset: \url{http://www.bom.gov.au/water/geofabric/}, and the online LD version implemented by LocI: \url{http://linked.data.gov.au/dataset/geofabric}}, 
+LocI's datasets are from many domains including environmental (the \textit{Australian Hydrological Geospatial Fabric}
+\footnote{Original, non-RDF dataset: \url{http://www.bom.gov.au/water/geofabric/}, and the online LD version implemented by LocI: \url{http://linked.data.gov.au/dataset/geofabric}}, 
 a collection of surface hydrology features), human/census (the \textit{Australian Statistical Geography Standard} spatial areas)
 \footnote{Non-RDF dataset: \url{https://geo.abs.gov.au/arcgis/services/ASGS2016/MB/MapServer/WFSServer}, LD version: \url{http://linked.data.gov.au/dataset/asgs2016}}, 
 and cartographic/administrative (the \textit{National Composite Gazetteer of Australia})\footnote{LD version: \url{https://linked.data.gov.au/dataset/placenames}}. 
 
-The LocI system's architecture is shown in \ref{fig:loci-arch} for architectural details. It shows the LocI Data Cache, which is a multi-graph triplestore, 
+LocI architecture is shown in Figure~\ref{fig:loci-arch} for architectural details. It shows the LocI Data Cache, which is a multi-graph triplestore, 
 obtains its data by ``pulling'' RDF datasets through APIs that both interpret non-RDF data for online delivery and are also able to create static RDF 
 versions of the datasets. All LocI datasets conform to the LocI Ontology\footnote{\url{http://linked.data.gov.au/def/loci}} which imports the GeoSPARQL
 \footnote{\url{http://www.opengis.net/doc/IS/geosparql/1.0}} and DCAT\footnote{\url{https://www.w3.org/TR/2014/REC-vocab-dcat-20140116/}} ontologies. 
@@ -133,35 +133,91 @@ Alongside the Cache is a traditional spatial DB - PostGIS\footnote{\url{https://
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{images/loci-arch.png}
-    \caption{An informal architecture diagram of the LocI project's \textit{Linked Data} infrastructure.}
+    \includegraphics[width=0.8\linewidth]{images/loci-arch.png}
+    \caption{An informal architecture diagram of LocI's \textit{Linked Data} infrastructure.}
     \label{fig:loci-arch}
 \end{figure}
 
 \section{CaRSA Project Changes}\label{sec:changes}
+\subsection{Data Validity}
+This project's datasets are LocI datasets and the project knowledge Graph (KG) is similar to the LocI cache, however conformance to LocI is not easily
+ testable: data reasoning with LocI ontologies can check for incorrect inferences but no contraint language validators are available. This project implements formal \textit{profiles}, which 
+are specifications defining dependencies and validation tooling. This project uses profiles for requirements for data 
+publication by API, dataset suitability for the KG and for use and display by clients and they are defined using 
+\textit{The Profiles Vocabulary}~\cite{atkinson_profiles_2020} and all listed in the project catalogue\footnote{\label{catalogue} \url{https://w3id.org/carsa-loci/catalogue}}.
 
+\subsection{Discrete Global Grid System (DGGS) use}
+LocI aspired to use DGGS geometries\footnote{See the defining \textit{Abstract Specification}~\cite{purss_topic_2017} for indications of potential benefits of 
+DGGS and the more recent \textit{OGC Engineering Report}~\cite{gibb_ogc_2021} for current thinking about how to integrate DGGS use within traditional spatial 
+infrastructure.} but never really did: DGGS data was produced but not really used. This project has produced DGGS versions of all \texttt{Feature} instances' 
+geometries, has stored them alongside traditional geometries within the KG (a triplestore) and has implemented GeoSPARQL~\cite{open2012ogc} functions
+within the triplestore SPARQL extension libraries (Apache Jena's ARC\footnote{\url{https://jena.apache.org/documentation/query/extension.html}}) that work with 
+DGGS geometry representations. These functions are used to obviate the need for LocI's Geometry Data Store and thus reduce infrastructure complexity.
 
+An important enabling factor in this use of DGGS with GeoSPARQL is the inclusion of DGGS geometry serializations within version 1.1 of GeoSPARQL which was motivated
+by LocI project requirements. This version is currently under review and is expected to be published around the time of this paper's publication. Working documents 
+are avalable\footnote{See \url{https://opengeospatial.github.io/ogc-geosparql/} for the GeoSPARQL ``Standards Working Groups`` 's working documents}.
 
+\subsection{Observations data use}
+LocI anticipated observational data - human/industry statistics or natural-world observation data - wuold be used with its spatial data. This project
+implements two such datasets: 1. population data taken from the 2016 Australian census; 2. ``exposure'' data per statistical area - this is data about the vulnerability
+of physical infrastructure to natural hazards. This project has developed an ``Observations Dataset'' profile (see the project catalogue \footref{catalogue}) that defines the characteristics of a LocI-comatable 
+observations dataset using the profiling mechanisms mentioned above.
+
+\subsection{Knowledge Graph (KG) importing}
+This project's KG includes LocI datasets as well as new LocI-conformant datasets. To avoid duplication, this project intends to import LocI content unchanged however, 
+currently, the additional requirements this project has (see the listed changes above) mean that LocI datasets have to be extended and thus reuse of LocI datasets
+or the data cache (see Figure~\ref{fig:loci-arch}) is not currently possible. For now, a ``LocI 2 KG'' has een created and imported into this project's KG (see 
+\ref{fig:carsa-arch}) but this will be removed when LocI implements this project's elements.
+
+\subsection{Clients and Management}
+LocI implemented some generic and specific clients of its data holdings\footnote(See \url{https://loci.cat/#datasets-and-applications} for a list). This project can reuse 
+some of them, such as \textit{IDer Down}\footnote{\url{https://excelerator.loci.cat/iderdown}} due to the same dataset structures used, however this project has a pair of 
+major objectived that have necessitated different clients. These are:
+
+\begin{enumerate}
+    \item Management of data by versions in the project KG
+    \item Demonstration of the integration of traditional spatial web data display and Linked Data
+\end{enumerate} 
+
+For the first, this project has implemented a sophsticated application layer on top of its KG: the \textit{SURROUND Ontology Platform}\footnote{\url{https://surroundaustralia.com/sop}}
+is used to track, select for use, update and generally govern datasets. This results in a new administrative interface that LocI never had since it was not tasked with operational
+data management, only proof-of-concpet system implementation. For the second, information
+flows between a traditional web spatial data portal\footnote{The re-deployable TerriaJS (\url{https://terria.io/}) globe is deployed for this project at \url{https://w3id.org/carsa-loci/globe}}
+and a Linked Data browser\footnote{This system allows for the browsing of content within this project's KG, as opposed to the LD dereferencing of individual resources 
+which is acomplished by the APIs implemented for each dataset.} with panels of per-\texttt{Feature} information witin the portal supplied by KG queries. This demonstrated
+LD / SW data for previous implementations of this data portal software just present simple type key / value pairs of information per-\texttt{Feature}.
+
+\subsection{More standardized Dataset APIs}
+LocI implemented LD APIs for spatial datasets that followed standard LD protocols and the data model negotiation protocols of \textit{Content Negotiation by Profile} (ConnegP)~\cite{atkinson_profiles_2020}.
+Content within these APIs was all discoverable since top-level elements - dataset declarations - linked to their content registers and registers linked to individual \texttt{Features}, 
+however no strict or common spatial API structure was used. This project implements APIs as both LD APIs and also as \textit{OGC API: Features}~\cite{clemens_portele_ogc_2019} APIs\footnote{See an example of such an API online at \url{https://w3id.org/carsa-loci/provinces} or browse the project catalogue, as linked to in previous footnotes}.
+This is possible due to ConnegP implementations being able to select data models and formats per API endpoint using general mecahnics (HTTP headers or URI query strings) that can be constrained
+to meet OGC API: Features requiements. ConnegP APIs are also used to deliver the Observations datasets but these are not conformant with OGC API:Features since they don't contains any geometry 
+infromation - they link to spatial datasets' \texttt{Features} for their data's spatial information.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{images/carsa-arch.png}
+    \includegraphics[width=0.8\linewidth]{images/carsa-arch.png}
     \caption{An informal architecture diagram of the CaRSA project's \textit{Linked Data} infrastructure}
-    \label{fig:geosparql11ontology}
+    \label{fig:carsa-arch}
 \end{figure}
 
 
 \section{Conclusions}\label{sec:conclusions}
-
-
+This project is both reuser of LocI systems and an extender of them. Core benefits of spatial Linked Data are preserved - distributed dataset publication, human- and machine-readable 
+web content - and Semantic Web methods - inferencing, ontology modelling however new spatial data indexing is applied (Discrete Global Grid System use), total project data holdings management is
+enabled, data validators created and new clients are delivered.
 
 
 \subsection{Future Work}\label{sec:futurework}
-\begin{itemize}
-    \item[$\ast$] GeoSPARQL 1.1: to be completed by July, 2021
-    \item[$\ast$] GeoSPARQL 1.2: more adventurous extension - late 2021
-    \item[$\ast$] GeoSPARQL 2.0: so-far unspecified
-\end{itemize}
+This project will operate in test mode until July, 2021, after which time it is expected the system will move to full production. When that happens, this system will be highly dependent on the 
+dependable supply of its datasets to make guarentees about system data currency. To ensure this, inter-agency data supply chain management - stated under the precursor LocI project but not completed - 
+must be completed. 
+
+For data to be delivered by owner agencies as Linked Data, assistance will need to be given to those agncies to be able to model datasets using Semantic Web ontologies and to produce Linked Data verisions
+of them for delivery via APIs. This will require strong motivation from central government data users to ensure thee requriements are met as implementing these approaches and tools is a socio-technical
+challenge, not purely a technical one.
 
 
 %
