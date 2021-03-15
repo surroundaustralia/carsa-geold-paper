@@ -170,23 +170,22 @@ currently, the additional requirements this project has (see the listed changes 
 or the data cache (see Figure~\ref{fig:loci-arch}) is not currently possible. For now, a ``LocI 2 KG'' has een created and imported into this project's KG (see 
 \ref{fig:carsa-arch}) but this will be removed when LocI implements this project's elements.
 
-\subsection{Clients and Management}
-LocI implemented some generic and specific clients of its data holdings\footnote(See \url{https://loci.cat/#datasets-and-applications} for a list). This project can reuse 
-some of them, such as \textit{IDer Down}\footnote{\url{https://excelerator.loci.cat/iderdown}} due to the same dataset structures used, however this project has a pair of 
-major objectived that have necessitated different clients. These are:
+\subsection{Data and metadata management}
+LocI had no requirement to manage the state of the data it coalesced into its cache as such operational management was out of scope for the technical demonstrator. However, this project
+is moving to a production KG that must managed all of its contents to assure currency and so on. For this reason, this project has implemented a sophsticated application layer on top of its KG: the 
+\textit{SURROUND Ontology Platform}\footnote{\url{https://surroundaustralia.com/sop}}, which is used to track, select for use, update and generally govern datasets. This application
+supports provenance absorbtion (for datasets that contain provenance) and provenance generation (for data processing contained within the platform) as well as managed item (dataset, ontology, vocabulary)
+status tracking and even the automated calculation of \textit{FAIR Scores}\footnote{Scored for datasets rated against the \textit{FAIR PRinciples}: \url{https://www.go-fair.org/fair-principles/}}.
 
-\begin{enumerate}
-    \item Management of data by versions in the project KG
-    \item Demonstration of the integration of traditional spatial web data display and Linked Data
-\end{enumerate} 
-
-For the first, this project has implemented a sophsticated application layer on top of its KG: the \textit{SURROUND Ontology Platform}\footnote{\url{https://surroundaustralia.com/sop}}
-is used to track, select for use, update and generally govern datasets. This results in a new administrative interface that LocI never had since it was not tasked with operational
-data management, only proof-of-concpet system implementation. For the second, information
+\subsection{Clients}
+LocI implemented some generic and specialised clients of its data holdings\footnote(See \url{https://loci.cat/#datasets-and-applications} for a list). This project can reuse some of them, such as 
+\textit{IDer Down}\footnote{\url{https://excelerator.loci.cat/iderdown}} which is used to download IDs for all instances of a \texttt{Feature} type, due to the same dataset structures being used.
+However, this project is also charged with the demonstration of the integration of traditional spatial web data display and Linked Data. For this reason, information
 flows between a traditional web spatial data portal\footnote{The re-deployable TerriaJS (\url{https://terria.io/}) globe is deployed for this project at \url{https://w3id.org/carsa-loci/globe}}
 and a Linked Data browser\footnote{This system allows for the browsing of content within this project's KG, as opposed to the LD dereferencing of individual resources 
-which is acomplished by the APIs implemented for each dataset.} with panels of per-\texttt{Feature} information witin the portal supplied by KG queries. This demonstrated
-LD / SW data for previous implementations of this data portal software just present simple type key / value pairs of information per-\texttt{Feature}.
+which is acomplished by the APIs implemented for each dataset.} with panels of per-\texttt{Feature} information accessible witin the portal supplied by KG queries. Previous spatial web data display
+only presents simple type key / value pairs of information per-\texttt{Feature} but this system presents graph data which can be followed. Also, the management requierment, described above, has 
+necessitated an adminstrative interface to this project's KG, that LocI never had.
 
 \subsection{More standardized Dataset APIs}
 LocI implemented LD APIs for spatial datasets that followed standard LD protocols and the data model negotiation protocols of \textit{Content Negotiation by Profile} (ConnegP)~\cite{atkinson_profiles_2020}.
@@ -205,9 +204,9 @@ infromation - they link to spatial datasets' \texttt{Features} for their data's 
 
 
 \section{Conclusions}\label{sec:conclusions}
-This project is both reuser of LocI systems and an extender of them. Core benefits of spatial Linked Data are preserved - distributed dataset publication, human- and machine-readable 
+This project is both reuser of LocI systems and an extender of them. Core benefits of spatial Linked Data are preserved - harmonised use of distributed datasets, human- and machine-readable 
 web content - and Semantic Web methods - inferencing, ontology modelling however new spatial data indexing is applied (Discrete Global Grid System use), total project data holdings management is
-enabled, data validators created and new clients are delivered.
+enabled, data validators created and new clients are delivered. The resulting system is a proto-operational system as opposed to a proof-of-concept.
 
 
 \subsection{Future Work}\label{sec:futurework}
