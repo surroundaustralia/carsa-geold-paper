@@ -23,17 +23,14 @@
 \authorrunning{Car N.J. et al.}
 
 \institute{
-    {
-    SURROUND Australia Pty Ltd., Australia \&\\
+    {SURROUND Australia Pty Ltd., Australia \&\\
     Australian National University, Australia\\
     \email{nicholas.car@surroundaustralia.com}
     %\url{https://surroundaustralia.com}
     }
     \and
-    {
-        Geoscience Australia\\
-        \email{irina.bastrakova@ga.gov.au}
-    }
+    {Geoscience Australia\\
+    \email{irina.bastrakova@ga.gov.au}}
 }
 
 \maketitle
@@ -44,13 +41,13 @@ have to simultaneously cover multiple diverse use cases (e.g. social, environmen
 The 2020 Australian bushfire crisis and the global COVID-19 pandemic are examples of complex crisis events where lots of data sources are available.\\
 
 In 2018 – 2020, Australia built several \textit{Linked Data} ``spines'' - themed collections of interoperable reference data that simplify data 
-integreation in particular domains. 
+integration in particular domains. 
 The spatial data spine, Loc-I (Location Index), consists of 7 nationally-significant spatial datasets, such as the \textit{Australian Statistical Geographies System}. 
 Loc-I delivered Linked Data forms of its datasets and provided infrastructure for their use as a single system.\\
 
-Here described is \textit{Loc-I for Disaster Recorvery}, a scenario deployment of Loc-I.
-We discuss original Loc-I design, this project's differences and its different key requirements, isuch as to integrate Linked Data with traditional
-spatial data systems, and how this system is pushing spatial and \textit{Semantic Web} standards development such as DGGS and GeoSPARQL.
+Here described is \textit{Loc-I for Disaster Recovery}, a scenario deployment of Loc-I.
+We discuss original Loc-I design, this project's key requirements and other differences, such as integrating with traditional
+spatial data systems, and how this system is pushing the development of spatial and \textit{Semantic Web} standards, such as DGGS and GeoSPARQL.
 
 \keywords{Location Index \and Loc-I \and GeoSPARQL \and DGGS \and Spatial Data on the Web \and Australia \and national data infrastructure}
 \end{abstract}
@@ -59,26 +56,26 @@ spatial data systems, and how this system is pushing spatial and \textit{Semanti
 \section{Introduction}\label{sec:introduction}
 \subsection{Motivation}
 Australia suffers large floods and bushfires, so Australian government is committing substantial resources over 
-multiple years to new cross-agency data sharing initiatives\footnote{``Australia commits to climate resilience'', 
+multiple years to new cross-agency data sharing initi-atives\footnote{``Australia commits to climate resilience'', 
 \url{https://minister.awe.gov.au/ley/media-releases/australia-commits-climate-resilience}}
 that will ``connect and leverage the Commonwealth’s extensive climate and natural disaster risk information to further prepare for and build resilience to natural disasters''.
 
 \subsection{Demonstrator Projects}
 Several of demonstrator projects for an anticipated new data sharing regime were conducted in early 2021. 
 Traditional methods of data aggregation are being tested, such as data pooling in shared facilities,
-standardising web services and cross-cataloging datasets, but forward-looking methdos are too. In particular,
+standardising web services and cross-cataloging datasets, but forward-looking methods are too. In particular,
 \textit{Semantic Web} (SW) and \textit{Linked Data} (LD) technologies\footnote{By ``Linked Data'', as opposed to ``linked data'' or ``data linkage'' etc.,
 we mean systems and data that implement a number of \textit{Semantic Web} technologies (RDF, OWL, SKOS, SPARQL, etc.), primarily 
-defined by a series of \href{https://www.w3.org/standards/semanticweb/data}{World Wide Web Consortium} (W3C) standards. The W3C's defintion of 
-\textit{Semantic Web} is that it is a ``Web of Data'', an evolved Internet able to be queried by machineswhich can draw inferences from it.}
+defined by a series of \href{https://www.w3.org/standards/semanticweb/data}{World Wide Web Consortium} (W3C) standards. The W3C's definition of 
+\textit{Semantic Web} is that it is a ``Web of Data'', an evolved Internet able to be queried by machines which can draw inferences from it.}
 are being used to integrate different, but relatively similar, datasets that are published in a distributed manner and
 \textit{Discrete Global Grid System} (DGGS) spatial data methods are being used to integrate spatial data from multiple sources. In 2019-2020, Geoscience Australia tested DGGS data integration
 for information relevant to bushfires which includes burned/burning areas, vegetation cover and demographics.
 
 This paper describes the SW/LD and DGGS approaches to publish distributed and harmonised data being implemented by a Geoscience Australia (GA) project that we will 
-refere to as \textit{this project}. The project extends the approach taken by the Location Index project described in the next section.
+refer to as \textit{this project}. The project extends the approach taken by the Location Index project described in the next section.
 
-\section{Loc-I: The Loction Index}\label{sec:loci}
+\section{Loc-I: The Location Index}\label{sec:loci}
 
 \begin{figure}[htb]
     \centering
@@ -89,10 +86,9 @@ refere to as \textit{this project}. The project extends the approach taken by th
 \end{figure}
 
 In 2018 - 2020, Australian spatial data and research agencies (\href{https://www.csiro.au}{CSIRO} \& \href{https://www.ga.gov.au}{Geoscience Australia} foring for the \href{https://www.abs.gov.au}{Australian Bureau of Statistics}) implemented a ``national and authoritative, also federated, index for Australian spatial data using Semantic Web technologies~\cite{car_location_2019}''.
-
 This system, known as the Location Index (Loc-I)~\cite{car_location_2019}, aims to ``better geospatially integrate and analyze data across 
 government portfolios and information domains''. The main use case addressed by Loc-I's is to greatly reduce the time taken by government 
-workers in data analysis using spatial information by providing pre-integrated, authoratitive, spatial datasets that can be used in 
+workers in data analysis using spatial information by providing pre-integrated, authoritative, spatial datasets that can be used in 
 online, open data scenarios, within secure data integration environments and across the two. The project deals with data from multiple domains,
 see Figure~\ref{fig:loci-brochure}. Some of the interesting aspects of Loc-I's design include:
 
@@ -100,11 +96,11 @@ see Figure~\ref{fig:loci-brochure}. Some of the interesting aspects of Loc-I's d
     \item[$\ast$] federated publication of datasets via standard Linked Data APIs
     \item[$\ast$] use of VoID \texttt{Linkset}~\footnote{\url{https://www.w3.org/TR/void/}} instances to crosswalk datasets
     \begin{itemize}
-        \item[$-$] these are independently-selectable for use meaning that a specific ccrosswalk, of potentially many, may be selected for use
+        \item[$-$] these are independently-selectable for use meaning that a specific crosswalk, of potentially many, may be selected for use
     \end{itemize} 
     \item[$\ast$] use of a \textit{Geometry Data Service}\footnote{The service is online at \url{https://gds.loci.cat/}} for spatial integration
     \begin{itemize}
-        \item[$-$] this service extends common use of using GeoSPARQL~\cite{open2012ogc} by storing \texttt{Geometry} instances seperately from the \texttt{Feature} instances they are the geometries for. This allows the geometry data to be managed in a PostGIS database\footnote{\url{https://postgis.net/}}, not a triplestore, as usually used for GeoSPARQL data.
+        \item[$-$] this service extends common use of using GeoSPARQL~\cite{open2012ogc} by storing \texttt{Geometry} instances separately from the \texttt{Feature} instances they are the geometries for. This allows the geometry data to be managed in a PostGIS database\footnote{\url{https://postgis.net/}}, not a triplestore, as usually used for GeoSPARQL data.
     \end{itemize}
     \item[$\ast$] several different clients for different uses
     \begin{itemize}
@@ -120,8 +116,7 @@ and cartographic/administrative (the \textit{National Composite Gazetteer of Aus
 
 Loc-I architecture is shown in Figure~\ref{fig:loci-arch} for architectural details. It shows the Loc-I Data Cache, which is a multi-graph triplestore, 
 obtains its data by ``pulling'' RDF datasets through APIs that both interpret non-RDF data for online delivery and are also able to create static RDF 
-versions of the datasets. All Loc-I datasets conform to the Loc-I Ontology\footnote{\url{http://linked.data.gov.au/def/loci}} which imports the GeoSPARQL
-\footnote{\url{http://www.opengis.net/doc/IS/geosparql/1.0}} and DCAT\footnote{\url{https://www.w3.org/TR/2014/REC-vocab-dcat-20140116/}} ontologies. 
+versions of the datasets. All Loc-I datasets conform to the Loc-I Ontology\footnote{\url{http://linked.data.gov.au/def/loci}} which imports the GeoSPARQL\footnote{\url{http://www.opengis.net/doc/IS/geosparql/1.0}} and DCAT\footnote{\url{https://www.w3.org/TR/2014/REC-vocab-dcat-20140116/}} ontologies. 
 Alongside the Cache is a traditional spatial DB - PostGIS\footnote{\url{https://postgis.net/}} used to perform fast geometry intersections.
 
 \begin{figure}[htb]
@@ -136,8 +131,8 @@ Alongside the Cache is a traditional spatial DB - PostGIS\footnote{\url{https://
 This project's datasets are Loc-I datasets and its Knowledge Graph (KG) is similar to the Loc-I cache, however conformance to Loc-I is not easily
 testable: Loc-I provided no data validators. This project implements formal \textit{profiles}, which 
 are specifications defining dependencies and validation tooling. This project uses profiles for requirements for data 
-publication by API, dataset suitability for the KG and for use and display by clients and they are defined using 
-\textit{The Profiles Vocabulary}~\cite{atkinson_profiles_2020} and all listed in the project's LD catalogue\footnote{\label{catalogue} \url{https://w3id.org/l4dr/explorer}}.
+publication by API, dataset suitability for the KG and for use and display by clients. It uses ``profiles'' as defined using 
+\textit{The Profiles Vocabulary}~\cite{atkinson_profiles_2020} and all listed in the project's LD catalogue\footnote{\label{catalogue}\url{https://w3id.org/l4dr/explorer}}.
 
 \subsection{Discrete Global Grid System (DGGS) use}
 Loc-I aspired to use DGGS geometries\footnote{See the defining \textit{Abstract Specification}~\cite{purss_topic_2017} for indications of potential benefits of 
@@ -155,31 +150,32 @@ by Loc-I project requirements. This version is currently under review and is exp
 are avalable\footnote{See \url{https://opengeospatial.github.io/ogc-geosparql/} for the GeoSPARQL ``Standards Working Groups`` 's working documents}.
 
 \subsection{Observations data use}
-Loc-I anticipated observational data - human/industry statistics or natural-world observation data - wuold be used with its spatial data. This project
+Loc-I anticipated observational data - human/industry statistics or natural-world observation data - would be used with its spatial data. This project
 implements two such datasets: 1. population data taken from the 2016 Australian census; 2. ``exposure'' data per statistical area - this is data about the vulnerability
 of physical infrastructure to natural hazards. This project has developed an ``Observations Dataset'' profile (see the project catalogue\footref{catalogue}) that defines the characteristics of a Loc-I-comatable 
 observations dataset using the profiling mechanisms mentioned above.
 
 \subsection{Knowledge Graph (KG) importing}
-This project's KG includes Loc-I datasets as well as new Loc-I-conformant datasets. To avoid duplication, this project intends to import Loc-I content unchanged however, 
-currently, the additional requirements this project has (see the listed changes above) mean that Loc-I datasets have to be extended and thus reuse of Loc-I datasets
-or the data cache (see Figure~\ref{fig:loci-arch}) is not currently possible. For now, a ``Loc-I 2 KG'' has een created and imported into this project's KG (see 
-\ref{fig:l4dr-arch}) but this will be removed when Loc-I implements this project's elements.
+This project's KG includes Loc-I datasets as well as new Loc-I-conformant datasets. To avoid duplication, it intends to import Loc-I content unchanged however, 
+currently, the additional requirements this project has (see below) mean that Loc-I datasets hmust be extended and thus reuse of Loc-I datasets
+or the data cache (see Figure~\ref{fig:loci-arch}) is not possible. For now, a ``Loc-I 2 KG'' has een created and imported into this project's KG (see 
+Figure~\ref{fig:l4dr-arch}) but this will be removed when Loc-I implements this project's elements.
 
 \subsection{Data and metadata management}
-Operational management of data was out of scope for Loc-I as a technical demonstrator, however, this project
-is moving towards a production system that must managed content to assure currency. For this reason, it has implemented a sophsticated application layer on top of its KG, the 
-\textit{SURROUND Ontology Platform}\footnote{\url{https://surroundaustralia.com/sop}},  used to track, select for use, update and overall govern datasets. This application
+Operational management of data was out of scope for Loc-I as a technical demonstrator only so, its data was mostly un-governed in the project: individual researchers loaded datasets into the Loc-I Cache \textit{ad-hoc}. This project has a strong requirement to demonstrate on-going operations and will continuously 
+absorb new and updated data, so it has a strong requrement to manage content to assure currency and sustainable growth. For this reason, it has implemented a sophisticated application layer on top of its KG, the 
+\textit{SURROUND Ontology Platform}\footnote{\url{https://surroundaustralia.com/sop}}, used to track, select for use, update and overall govern datasets. This application
 supports provenance absorbtion (for datasets that contain provenance) and generation (for data processing contained within the platform) as well as managed item (dataset, ontology, vocabulary)
-status tracking and even the automated calculation of \textit{FAIR Scores}\footnote{Scored for datasets rated against the \textit{FAIR PRinciples}: \url{https://www.go-fair.org/fair-principles/}}.
+status tracking for over 20 classes of seamntic asset. These classes include TBox items such as ontologies and vocabularies, as well as ABox datasets but also specialised forms of these asset classes, such as \textit{Linksets} (datasets that crosswalk others) and \textit{Profiles} that are TBox objects that use and contrain, but don't defin other TBox assets. 
+The platform can also runs workflows for repetative data absorbtion (pulling non-RDF data from source locations, converting it to RDF and presenting it) and also run other calculations on top of data, such as \textit{FAIR Score}\footnote{Scored for datasets rated against the \textit{FAIR PRinciples}: \url{https://www.go-fair.org/fair-principles/}} rating. 
 
 \subsection{Clients}
 Loc-I implemented some generic and specialised clients for its data holdings\footnote{See \url{https://loci.cat/\#datasets-and-applications} for a list}. This project can reuse some, such as 
 \textit{IDer Down}\footnote{\url{https://excelerator.loci.cat/iderdown}} - used to download IDs for all \texttt{Feature} type instances - due to the same data structures being used.
 However, this project is also charged with demonstrating integration of Linked Data with traditional spatial web data delivery. For this reason, information
 flows between a traditional web globe\footnote{TerriaJS (\url{https://terria.io/}) at \url{https://w3id.org/l4dr/globe}}
-and a Linked Data browser\footnote{This system allows for the browsing of content within this project's KG as \url{https://w3id.org/l4dr/explorer}, as opposed to the LD dereferencing of individual resources 
-which is acomplished by the APIs implemented for each dataset.} with panels of per-\texttt{Feature} information accessible witin the globe supplied by KG queries. Previous spatial web data display
+and a Linked Data browser\footnote{\url{https://w3id.org/l4dr/explorer}. Allows for browsing of content in project's KG, as opposed to LD dereferencing of resources 
+accomplished by dataset APIs.} with panels of per-\texttt{Feature} information accessible within the globe supplied by KG queries. Previous spatial web data display
 only presents simple type key / value pairs of information per-\texttt{Feature} but this system presents graph data which can be followed. Also, the management requirement, described above, has 
 necessitated an adminstrative interface to this project's KG, that Loc-I never had.
 
@@ -188,8 +184,8 @@ Loc-I implemented LD APIs for spatial datasets that followed standard LD protoco
 Content within these APIs was all discoverable since top-level elements - dataset declarations - linked to their content registers and registers linked to individual \texttt{Features}, 
 however no strict or common spatial API structure was used. This project implements APIs as both LD APIs and also as \textit{OGC API: Features}~\cite{clemens_portele_ogc_2019} APIs\footnote{See an example of such an API online at \url{https://w3id.org/l4dr/provinces} or browse the project catalogue, as linked to in previous footnotes}.
 This is possible due to ConnegP implementations being able to select data models and formats per API endpoint using general mecahnics (HTTP headers or URI query strings) that can be constrained
-to meet OGC API: Features requiements. ConnegP APIs are also used to deliver the observations datasets but these are not conformant with OGC API:Features since they don't contains any geometry 
-infromation - they link to spatial datasets' \texttt{Features} for their data's spatial information.
+to meet OGC API: Features requirements. ConnegP APIs are also used to deliver the observations datasets but these are not conformant with OGC API:Features since they don't contains any geometry 
+information - they link to spatial datasets' \texttt{Features} for their data's spatial information.
 
 \begin{figure}[htb]
     \centering
@@ -208,8 +204,8 @@ enabled, data validators created and new clients are delivered. The resulting sy
 \subsection{Future Work}\label{sec:futurework}
 This project will operate in test mode until July, 2021, the likely, full production, when the system will be highly dependent on 
 uninterrupted data supply guarentee currency. To ensure this, inter-agency data supply chain management - stated in the Loc-I project but not completed - 
-must be finalised. For data to be delivered by owner agencies as Linked Data, assistance will need to be given to those agncies to be able to make Semantic Web and Linked Data verisions of their data
-for delivery via APIs. This will require strong motivation from central government data users to ensure these requriements are met as implementation is a socio-technical challenge, not purely a 
+must be finalised. For data to be delivered by owner agencies as Linked Data, assistance will need to be given to those agencies to be able to make Semantic Web and Linked Data versions of their data
+for delivery via APIs. This will require strong motivation from central government data users to ensure these requirements are met as implementation is a socio-technical challenge, not purely a 
 technical one.
 
 
@@ -244,22 +240,3 @@ technical one.
 % Oct 2017
 % \end{thebibliography}
 \end{document}
-
-
-
-
-% Outline
-% 
-% Section 1
-%   History of GeoSPARWL 1.0
-% Section 2
-%   motivation to update the spec
-% Section 3
-%   GeoSPARQL 1.1 additions
-%       motivation, and expected use, of new spatial functions. In particular, why in GeoSPARQL when aggregations etc. can be performed elsewhere?
-%       Spatial Measure
-% Section 4
-%       new profile presentation
-%       new URI regimes etc
-% Section 5
-%       expected changed use modes

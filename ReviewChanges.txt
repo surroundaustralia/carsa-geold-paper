@@ -1,0 +1,114 @@
+Reviewer 1:
+
+- Think of an acronym/abbreviation/name for the project described in the text. For readers it is hard to distinguish between CaRSA, Loc-I and the presented "CaRSA 
+    - we have changed the project cronym to Loc-I for DR or LDR and used that throughout
+- Data Identify, Collect, and Connect" project. That acronym could be used in the title.
+    - title changed anyway, as above
+- "LongSpine" appears in the abstract, but not in the full text.
+    - we've removed all references to LongSpine due so space constraints - it's only peripherally related anyay
+- It is Location Index (Loc-I), not "LocI".
+    - changed to Loc-I throughout
+- Use LaTeX features like hyphenation to do not exceed the page margin.
+- https://w3id.org/carsa-loci/catalogue does not exist (p. 5).
+- https://w3id.org/carsa-loci/globe does not exist (p. 5).
+- https://w3id.org/carsa-loci/provinces does not exist (p. 7).
+    - we were requested, by the client, to now use the "carsa" acronym so all w3id.org URIs are now "l4dr", e.g. https://w3id.org/l4dr/catalogue in place of https://w3id.org/carsa-loci/catalogue and they all work
+- http://www.opengis.net/doc/PER/t16-D017  does not exist (in ref [4]).
+    - I have replaced this one with the working web URL of https://docs.ogc.org/per/20-039r2.html. Pity the OGC's PID, as quoted in the doc itself, doesn't work!
+- Add word "Figure" into "(see 3)" (sec 3.4).
+    - done
+- Footnotes start with 3, not 1.
+    - sorry we chan't change that. It seems to be the way the LCNS LaTex template includes the numbering for the author institutions in the Footnote count - we don't specify the footnote numbering anywhere, it's automatically handled.
+- Check displayed reference URL: https://doi.org/https://doi.org/.
+    - fixed
+- Check blanks before/after footnote markers.
+    - done: I've ensured there are no line breaks between footnotes and the text they are for
+- Spell check your text to avoid "wuold" (sec 3.3).
+    - Ooops. Have run spellcheck over the document and made about 8 changes
+
+
+Reviewer 2:
+1) The paper is not easy to follow, the problem statement is not clear as well as the contributions.
+    - problem statemt: we disagree that it is not clear, the problem statement has a whole section: "Motivation", viz, text from the paper: 
+        - generic motivation: Australia suffers large floods and bushfires, so Australian government is committingsubstantial resources over multiple years to new cross-agency data sharing initiatives
+        - specific LD motivation:  "In particular, are being used to integrate different, but relatively similar, datasets that are published in a distributed manner
+        - specific form motivation: The project extends the approach taken by the Location Index project described in the next section."
+    - contribution: the Conclusions summarises the contributuion: "This project is both reuser of Loc-I systems and an extender of them. Core benefits of spatial Linked Data are preserved - harmonised use of distributed datasets, human- and machine-readable web content - and Semantic Web methods - inferencing, ontology modelling however new spatial data indexing is applied (Discrete Global Grid System use), total project data holdings management is enabled, data validators created and new clients are delivered. The resulting system is a proto-operational system as opposed to a proof-of-concept."
+
+2) It is unclear to me what is the purpose of the SURROUND Ontology Platform. It seems to me that it is just an application of the existing LocI platform. It would be better if the authors can provide more details about this platform.
+    - "It is unclear to me what is the purpose of the SURROUND Ontology Platform".
+        - this is a tool that, as the paper states, is "used to track, select for use, update and overall govern datasets"
+    - It seems to me that it is just an application of the existing LocI platform
+        - not at all: the Loc-I system didn't manage datasets at all, it just relied on external management of them (people to load/remove data) from a generic triplestore. The SOP allows you to manage datasets (and dependencies) within the platform
+    - It would be better if the authors can provide more details about this platform.
+        - I have added in quite a bit more information about workflows etc. that it runs in the relevant section
+
+3) In the paper, the authors claim that “The main use case addressed by LocI’s is to greatly reduce the time taken by government workers in data analysis using spatial information by providing preintegrated , authoratitive, .... ” However, in the paper, it is not shown that the proposed extensions are able to reduce the complexity of the data processing.
+    - I agree that we haven't really articulated how all the benefits flow, but we're just out of space here, sorry.
+
+
+Reviewer 3:
+I suggest authors to fix the following minor technical issues and
+typos:
+
+In Introduction:
+
+- "methdos" --> "methods"
+    - done
+- "refere" --> "refer"
+    - done
+
+In LocI: The Location Index
+
+- "Loction" --> "Location"
+    - done
+- "authoratitive" --> "authoritative"
+    - done
+- "ccrosswalk" --> "crosswalk"
+    - done
+- "defintion" --> "definition"
+    - done
+- "machineswhich" --> "machines which"
+    - done
+- "seperately" --> "separately"
+    - done
+
+In CaRSA Project Changes:
+
+- "contraint" --> "constraint"
+    - done
+- "wuold" --> "would"
+    - done
+- "sophsticated" --> "sophisticated"
+    - done
+
+Footnote 22 is written in the main text, instead in the footer.
+
+- "witin" --> "within"
+    - done
+- "acomplished" --> "accomplished"
+    - done
+- "requierment" --> "requirement"
+    - done
+- "requiements" --> "requirements"
+    - done
+- "infromation" --> "information"
+    - done
+
+In Future Work:
+
+- "guarentees" --> "guarantees"
+    - done
+- "agncies" --> "agencies"
+    - done
+- "verisions" --> "versions"
+    - done
+- "thee requriements" --> "the requirements"
+    - done
+- an extra space character in front of footnote references (5th, 7th, 9th, 10th, 16th)
+    - I've checked all footnotes and made them all consistent, removing spaces
+
+
+Reviewer 4:
+- Please remove the reference to the proprietary "SURROUND Ontology Platform" from the final camera-ready version.
+   - this isn't really possible since the central "Data Platform" too used in the project is the SURROUND Ontology Platform. To remove that reference would be like failing to mention that the triplestore in use is AllegroGraph.
