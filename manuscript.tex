@@ -7,12 +7,21 @@
 \usepackage{cleveref}
 \usepackage{footmisc}
 \usepackage{bookmark}
+\usepackage{tikz}
 
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 
+\newcommand\copyrighttext{%
+  \footnotesize Copyright ©2021 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
+\newcommand\copyrightnotice{%
+\begin{tikzpicture}[remember picture,overlay]
+\node[anchor=south,yshift=10pt] at (current page.south) {\fbox{\parbox{\dimexpr\textwidth-\fboxsep-\fboxrule\relax}{\copyrighttext}}};
+\end{tikzpicture}%
+}
+
 \begin{document}
 
-\title{L4DR: A 2nd-gen, national GeoLD system}
+\title{LDR: A 2nd-gen, National GeoLD System}
 \titlerunning{Loc-I for Disaster Recovery}
 
 \author{
@@ -34,6 +43,8 @@
 }
 
 \maketitle
+
+\copyrightnotice
 
 \begin{abstract}
 Increasingly, multiple sources of data are available for disaster recovery planning and emergency service scheduling. Data sharing systems may
@@ -190,7 +201,7 @@ information - they link to spatial datasets' \texttt{Features} for their data's 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\linewidth]{images/l4dr-arch.png}
-    \caption{An informal architecture diagram of the L4DR project's \textit{Linked Data} infrastructure}
+    \caption{An informal architecture diagram of the LDR project's \textit{Linked Data} infrastructure}
     \label{fig:l4dr-arch}
 \end{figure}
 
