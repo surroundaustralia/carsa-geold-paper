@@ -11,14 +11,6 @@
 
 \renewcommand\UrlFont{\color{blue}\rmfamily}
 
-\newcommand\copyrighttext{%
-  \footnotesize Copyright ©2021 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
-\newcommand\copyrightnotice{%
-\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=south,yshift=10pt] at (current page.south) {\fbox{\parbox{\dimexpr\textwidth-\fboxsep-\fboxrule\relax}{\copyrighttext}}};
-\end{tikzpicture}%
-}
-
 \begin{document}
 
 \title{LDR: A 2nd-gen, National GeoLD System}
@@ -27,6 +19,7 @@
 \author{
     Nicholas J. Car\inst{1}\orcidID{0000-0002-8742-7730} \and \\
     Irina Bastrakova\inst{2}\orcidID{0000-0002-4643-7289}
+    \thanks{Copyright ©2021 for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).}
 }
 
 \authorrunning{Car N.J. et al.}
@@ -44,15 +37,9 @@
 
 \maketitle
 
-\copyrightnotice
-
-\begin{abstract}
-Increasingly, multiple sources of data are available for disaster recovery planning and emergency service scheduling. Data sharing systems may
-have to simultaneously cover multiple diverse use cases (e.g. social, environmental and economic) and be transparent, verifiable and trusted. 
-The 2020 Australian bushfire crisis and the global COVID-19 pandemic are examples of complex crisis events where lots of data sources are available.\\
-
-In 2018 – 2020, Australia built several \textit{Linked Data} ``spines'' - themed collections of interoperable reference data that simplify data 
-integration in particular domains. 
+\begin{abstract} 
+The 2020 Australian bushfire crisis and the global COVID-19 pandemic are examples of complex crisis events where the use of data from multiple sources was sought. In 2018 – 2020, Australia built several \textit{Linked Data} ``spines'' - themed collections of interoperable reference data that simplify data 
+integration from multiple sources in particular domains. 
 The spatial data spine, Loc-I (Location Index), consists of 7 nationally-significant spatial datasets, such as the \textit{Australian Statistical Geographies System}. 
 Loc-I delivered Linked Data forms of its datasets and provided infrastructure for their use as a single system.\\
 
@@ -62,7 +49,6 @@ spatial data systems, and how this system is pushing the development of spatial 
 
 \keywords{Location Index \and Loc-I \and GeoSPARQL \and DGGS \and Spatial Data on the Web \and Australia \and national data infrastructure}
 \end{abstract}
-
 
 \section{Introduction}\label{sec:introduction}
 \subsection{Motivation}
@@ -200,7 +186,7 @@ information - they link to spatial datasets' \texttt{Features} for their data's 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/l4dr-arch.png}
+    \includegraphics[width=0.5\linewidth]{images/l4dr-arch.png}
     \caption{An informal architecture diagram of the LDR project's \textit{Linked Data} infrastructure}
     \label{fig:l4dr-arch}
 \end{figure}
